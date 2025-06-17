@@ -26,7 +26,7 @@ HTML + JavaScript
 bash
 Copy
 Edit
-git clone https://github.com/your-username/django-jwt-login.git
+git clone https://github.com/nav380/jwtlogin
 cd django-jwt-login
 2️⃣ Install dependencies
 bash
