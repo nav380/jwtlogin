@@ -1,12 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - JWT Authenticated</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <h2>Home Page (JWT Authenticated)</h2>
-  <button onclick="fetchProtected()">Call Protected API</button>
-  <pre id="output"></pre>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+  <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md text-center">
+    <h2 class="text-2xl font-bold mb-4 text-gray-800">🏠 Home Page</h2>
+    <p class="mb-6 text-gray-600">You are authenticated with JWT!</p>
+
+    <button
+      onclick="fetchProtected()"
+      class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition duration-200"
+    >
+      Call Protected API
+    </button>
+
+    <pre
+      id="output"
+      class="mt-6 text-left bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm text-gray-800"
+    ></pre>
+  </div>
 
   <script>
     async function fetchProtected() {
@@ -18,9 +35,16 @@
         }
       });
 
-      const data = await res.json();
-      document.getElementById("output").innerText = JSON.stringify(data, null, 2);
+      const output = document.getElementById("output");
+
+      if (res.ok) {
+        const data = await res.json();
+        output.innerText = JSON.stringify(data, null, 2);
+      } else {
+        output.innerText = "Failed to fetch protected API.";
+      }
     }
   </script>
+
 </body>
 </html>
